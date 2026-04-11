@@ -1,0 +1,11 @@
+name = "[FOD] Improved Zeus Monitor";
+picture = "FOD_ZM_Icon_512.paa";
+actionName = "Discord";
+action = "https://discord.gg/KY9seJDnWK";
+logo = "FOD_ZM_Icon_512.paa";
+logoOver = "FOD_ZM_Icon_512.paa";
+tooltip = "[FOD] Improved Zeus Monitor";
+tooltipOwned = "[FOD] Improved Zeus Monitor Owned";
+overview = "Enables curators in missions to see the individual FPS/Ping/Desync of the players, allowing them to adjust a mission accordingly if he finds the majority of players are having framerate issues. Special thanks to Commy2, Dscha, and Dedmen. QOL Improvements added by Nero/Phenosi.";
+author = "DriftingNitro / Nero / Phenosi / 'The VII Legion: Imperial Fists' Developers";
+overviewPicture = "FOD_ZM_Icon_512.paa";

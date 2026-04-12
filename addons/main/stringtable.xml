@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project name="aet">
+    <Package name="Main">
+        <Key ID="STR_github_aet_zfm_URL">
+            <English>https://github.com/Nomas-X/AET_Zeus_FPS_Monitor</English>
+        </Key>
+        <Key ID="STR_aet_zfm_author">
+            <English>Redwan S. / Nomas</English>
+        </Key>
+    </Package>
+</Project>

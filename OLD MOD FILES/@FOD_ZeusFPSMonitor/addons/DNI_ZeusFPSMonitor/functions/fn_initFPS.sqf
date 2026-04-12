@@ -66,7 +66,7 @@ ZFM_ScriptHandle = [] execVM "\DNI_ZeusFPSMonitor\script_fps.sqf";
 					private _fps = floor diag_fps;
 					if (_fps != DNI_lastFPS) then {
 						DNI_lastFPS = _fps;
-						player setVariable ["DNI_PlayerFPS", _fps, 2];
+						player setVariable ["DNI_PlayerFPS", _fps, true];
 					};
 
 					if (isMultiplayer) then {
@@ -76,15 +76,15 @@ ZFM_ScriptHandle = [] execVM "\DNI_ZeusFPSMonitor\script_fps.sqf";
 
 						if (_avgPing != DNI_lastPing) then {
 							DNI_lastPing = _avgPing;
-							player setVariable ["DNI_avgPing", _avgPing, 2];
+							player setVariable ["DNI_avgPing", _avgPing, true];
 						};
 						if (_avgBandwidth != DNI_lastBW) then {
 							DNI_lastBW = _avgBandwidth;
-							player setVariable ["DNI_avgBandwidth", _avgBandwidth, 2];
+							player setVariable ["DNI_avgBandwidth", _avgBandwidth, true];
 						};
 						if (_desync != DNI_lastDesync) then {
 							DNI_lastDesync = _desync;
-							player setVariable ["DNI_desync", _desync, 2];
+							player setVariable ["DNI_desync", _desync, true];
 						};
 					};
 				};

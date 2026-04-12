@@ -1,8 +1,10 @@
-ZFM_ScriptHandle = [] execVM "\DNI_ZeusFPSMonitor\script_fps.sqf";
+#include "../script_component.hpp"
+
+ZFM_ScriptHandle = [] execVM QPATHTOF(script_fps.sqf);
 
 0 spawn {
-	waituntil {!isnull (finddisplay 46)};
-	uisleep 1;
+	waitUntil {!isNull (findDisplay 46)};
+	uiSleep 1;
 	/*
 		ZFM_DesyncAlertSystem_activated = false;
 
@@ -51,7 +53,7 @@ ZFM_ScriptHandle = [] execVM "\DNI_ZeusFPSMonitor\script_fps.sqf";
 		if ((hasInterface) && (!isDedicated)) then {
 			DNI_ZeusFPSMonitor_Updated = [{
 				if ((!hasInterface) || (isDedicated)) exitWith {};
-				if (ZFM_ModToggle == false) exitWith {};
+				if (!ZFM_ModToggle == true) exitWith {};
 
 				if ((isNil "DNI_FPSDiagActive") || { (DNI_FPSDiagActive) }) then {
 					DNI_FPSDiagActive = true;

@@ -1,3 +1,5 @@
+#include "script_component.hpp"
+
 /*
 This an edited version of DriftingNitro's Zeus Framerate Monitor. Full credit to the original Authors.
 Hints, System Messages and obsolete Code have been removed.
@@ -20,8 +22,8 @@ I also added some more conditions and safety checks. New keybind were added with
 - Phenosi
 */
 
-missionNamespace setVariable  ["ZFM_ModToggle",zfm_setting_toggle];
-if (ZFM_ModToggle == false) exitWith {};
+missionNamespace setVariable  ["ZFM_ModToggle",SET(toggle)];
+if (!ZFM_ModToggle == true) exitWith {};
 
 /////////////////////////////////////////////////////////
 ////////////Script Written by DriftingNitro//////////////
@@ -44,16 +46,16 @@ waitUntil {_adminState = call BIS_fnc_admin; sleep 5; (!isNull (findDisplay 312)
 	
 DNI_showFrames = true;
 
-missionNamespace setVariable  ["ZFM_FPSViewDistanceMin",zfm_setting_viewdistance_min];
-missionNamespace setVariable  ["ZFM_FPSViewDistanceMax",zfm_setting_viewdistance_max];
-missionNamespace setVariable  ["ZFM_LowFPSLimit",zfm_setting_low_fps_limit];
-missionNamespace setVariable  ["ZFM_Font",zfm_setting_font];
-missionNamespace setVariable  ["ZFM_TextRegularColour",zfm_setting_regular_text_colour];
-missionNamespace setVariable  ["ZFM_TextRegularSize",zfm_setting_regular_text_size];
-missionNamespace setVariable  ["ZFM_TextRegularOutline",zfm_setting_regular_text_outline];
-missionNamespace setVariable  ["ZFM_TextLowColour",zfm_setting_low_text_colour];
-missionNamespace setVariable  ["ZFM_TextLowSize",zfm_setting_low_text_size];
-missionNamespace setVariable  ["ZFM_TextLowOutline",zfm_setting_low_text_outline];
+missionNamespace setVariable  ["ZFM_FPSViewDistanceMin",SET(viewdistance_min)];
+missionNamespace setVariable  ["ZFM_FPSViewDistanceMax",SET(viewdistance_max)];
+missionNamespace setVariable  ["ZFM_LowFPSLimit",SET(low_fps_limit)];
+missionNamespace setVariable  ["ZFM_Font",SET(font)];
+missionNamespace setVariable  ["ZFM_TextRegularColour",SET(regular_text_colour)];
+missionNamespace setVariable  ["ZFM_TextRegularSize",SET(regular_text_size)];
+missionNamespace setVariable  ["ZFM_TextRegularOutline",SET(regular_text_outline)];
+missionNamespace setVariable  ["ZFM_TextLowColour",SET(low_text_colour)];
+missionNamespace setVariable  ["ZFM_TextLowSize",SET(low_text_size)];
+missionNamespace setVariable  ["ZFM_TextLowOutline",SET(low_text_outline)];
 
 addMissionEventHandler ["Draw3D", {
 	{
@@ -109,7 +111,7 @@ addMissionEventHandler ["Draw3D", {
 						};
 					case 1: { 
 							//PING 
-							if ((_avgPing isNotEqualTo -1) and { _avgPing >= zfm_setting_high_ping_limit }) then {
+							if ((_avgPing isNotEqualTo -1) and { _avgPing >= SET(high_ping_limit) }) then {
 								if(DNI_showFrames) then {
 									drawIcon3D
 									[
@@ -149,7 +151,7 @@ addMissionEventHandler ["Draw3D", {
 							//Desync 
 							if ((_desync isNotEqualTo -1) and { _desync >= 2000 }) then {
 								if(DNI_showFrames) then {
-									if (zfm_DesyncVisual_toggle) then {
+									if (SET(DesyncVisual_toggle)) then {
 										if ((_desync >= 19999)) then {
 											drawIcon3D
 											[
@@ -159,7 +161,7 @@ addMissionEventHandler ["Draw3D", {
 												1,//Width
 												1,//height from position, below
 												0,//angle
-												format["", str _desync],//text to be displayed
+												format["%1", str _desync],//text to be displayed
 												ZFM_TextLowOutline,//shadow on text, 0=none,1=shadow,2=outline
 												ZFM_TextLowSize,//text size
 												ZFM_Font,//text font
@@ -174,7 +176,7 @@ addMissionEventHandler ["Draw3D", {
 												1,//Width
 												1,//height from position, below
 												0,//angle
-												format["", str _desync],//text to be displayed
+												format["%1", str _desync],//text to be displayed
 												ZFM_TextLowOutline,//shadow on text, 0=none,1=shadow,2=outline
 												ZFM_TextLowSize,//text size
 												ZFM_Font,//text font
@@ -217,7 +219,7 @@ addMissionEventHandler ["Draw3D", {
 								};
 							} else {
 								if (DNI_showFrames) then {
-									if (zfm_DesyncVisual_toggle) then {
+									if (SET(DesyncVisual_toggle)) then {
 										drawIcon3D
 										[
 											"a3\ui_f\data\igui\rsctitles\rschvtphase\jac_a3_signal_4_ca.paa",//Path to image displayed near text
@@ -226,7 +228,7 @@ addMissionEventHandler ["Draw3D", {
 											1.7,//Width
 											1,//height from position, below
 											0,//angle
-											format["", str _desync],//text to be displayed Desync: %1
+											format["%1", str _desync],//text to be displayed Desync: %1
 											ZFM_TextRegularOutline,//shadow on text, 0=none,1=shadow,2=outline
 											ZFM_TextRegularSize,//text size
 											ZFM_Font,//text font
@@ -261,7 +263,7 @@ addMissionEventHandler ["Draw3D", {
 								1,//Width
 								1,//height from position, below
 								0,//angle
-								format["N/A", str _playerFPS],//text to be displayed
+								format["N/A %1", str _playerFPS],//text to be displayed
 								ZFM_TextRegularOutline,//shadow on text, 0=none,1=shadow,2=outline
 								ZFM_TextRegularSize,//text size
 								ZFM_Font,//text font

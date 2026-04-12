@@ -7,7 +7,7 @@ class CfgFunctions
 
             file = PATH_TO_FUNC;
 
-            class example { postInit = 1; };
+            class initFPS { postInit = 1; };
 
         };
     };

@@ -15,7 +15,7 @@ class CfgPatches {
 
         // Addon Specific Information
         // Minimum compatible version. When the game's version is lower, pop-up warning will appear when launching the game.
-        requiredVersion = 2.02;
+        requiredVersion = 2.06;
 
         // Required addons, used for setting load order.
         // When any of the addons is missing, pop-up warning will appear when launching the game.
@@ -35,3 +35,45 @@ class CfgPatches {
 
 #include "CfgFunctions.hpp"
 #include "XEH\CfgXEH.hpp"
+
+class CfgNotifications
+{
+	class Default
+	{
+		title="";
+		iconPicture="";
+		iconText="";
+		description="";
+		color[]={1,1,1,1};
+		duration=5;
+		priority=0;
+		difficulty[]={};
+	};
+	class ZFM_DesyncMild
+	{
+		title="MILD DESYNC";
+		iconPicture="\A3\ui_f\data\gui\rsc\rscpendinginvitation\desynclow_ca.paa";
+		description="%1";
+		color[]={1,0.85000002,0,1};
+		duration=5;
+		priority=6;
+	};
+	class ZFM_DesyncSevere
+	{
+		title="SEVERE DESYNC";
+		iconPicture="\A3\ui_f\data\gui\rsc\rscpendinginvitation\desynchigh_ca.paa";
+		description="%1";
+		color[]={1,0,0,1};
+		duration=6;
+		priority=9;
+	};
+	class ZFM_DesyncResolved
+	{
+		title="CONNECTION STABLE";
+		iconPicture="\A3\ui_f\data\igui\rsctitles\rschvtphase\jac_a3_signal_4_ca.paa";
+		description="%1";
+		color[]={0,1,0.30000001,1};
+		duration=4;
+		priority=4;
+	};
+};

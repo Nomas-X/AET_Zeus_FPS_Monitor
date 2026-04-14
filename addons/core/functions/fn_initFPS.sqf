@@ -96,6 +96,8 @@ ZFM_ScriptHandle = [] execVM QPATHTOF(script_fps.sqf);
 		};
 	};
 
+	publicVariableServer "DNI_fnc_startClientStatMonitor";
+
 	{
 		// Only remoteExec to players
 		if (!isNull _x) then {

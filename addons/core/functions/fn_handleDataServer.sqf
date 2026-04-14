@@ -60,7 +60,12 @@ if (isMultiplayer) then {
 					private _networkData = [-1,-1,-1];
 					private _fps = _x getVariable [QGVAR(playerFPS), -1];
 					if (isMultiplayer) then {
-						_networkData = (getUserInfo (getPlayerID _x)) # 9;
+						_networkData = (getUserInfo (getPlayerID _x));
+					};
+					if (_networkData isNotEqualTo []) then {
+						_networkData = _networkData # 9;
+					} else {
+						_networkData = [-1, -1, -1];
 					};
 					GVAR(PlayersDataMap) set [getPlayerUID _x, [_fps, _networkData#0, _networkData#2]];
 				};

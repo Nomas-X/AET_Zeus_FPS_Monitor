@@ -61,7 +61,6 @@ addMissionEventHandler ["Draw3D", {
 	if (isNil QGVAR(PlayersDataMap)) exitWith {};
 	{
 		private _playerData = GVAR(PlayersDataMap) getOrDefault [(getPlayerUID _x), [-1,-1,-1], false];
-		systemChat("playerData " + str(_playerData));
 		_distance = (curatorCamera modelToWorld [0,0,0]) distance _x;
 		//if camera is closer than ZFM_FPSViewDistanceMin (Default 0) and farther than ZFM_FPSViewDistanceMax (Default 500) meters away from the targets the text will not display
 		if (_distance > ZFM_FPSViewDistanceMin and _distance < ZFM_FPSViewDistanceMax) then {

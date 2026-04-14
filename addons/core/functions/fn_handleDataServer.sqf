@@ -45,27 +45,27 @@ addMissionEventHandler ["PlayerDisconnected", {
 
 GVAR(PlayersDataMap) = createHashMap;
 
-[
-	{
+if (isMultiplayer) then {
+	[
 		{
-			if (!isNull _x) then {
-				private _networkData = [-1,-1,-1];
-				private _fps = _x getVariable [QGVAR(playerFPS), -1];
-				if (isMultiplayer) then {
-					_networkData = (getUserInfo (getPlayerID _x)) # 9;
-					systemChat str(_networkData);
+			{
+				if (!isNull _x) then {
+					private _networkData = [-1,-1,-1];
+					private _fps = _x getVariable [QGVAR(playerFPS), -1];
+					if (isMultiplayer) then {
+						_networkData = (getUserInfo (getPlayerID _x)) # 9;
+					};
+					GVAR(PlayersDataMap) set [getPlayerUID _x, [_fps, _networkData#0, _networkData#2]];
 				};
-				GVAR(PlayersDataMap) set [getPlayerUID _x, [_fps, _networkData#0, _networkData#2]];
-				systemChat "data Sent";
-			};
-		} forEach allPlayers;
+			} forEach allPlayers;
 
-		{
-			(owner _x) publicVariableClient QGVAR(PlayersDataMap);
-			diag_log format ["%1 data sent to %2 | %3", QFUNC(handleDataServer), getPlayerUID _x, name _x];
+			{
+				(owner _x) publicVariableClient QGVAR(PlayersDataMap);
+				diag_log format ["%1 data sent to %2 | %3", QFUNC(handleDataServer), getPlayerUID _x, name _x];
 
-		} forEach GVAR(zeusList);
-	},
-	1,
-	[]
-] call CBA_fnc_addPerFrameHandler;
+			} forEach GVAR(zeusList);
+		},
+		1,
+		[]
+	] call CBA_fnc_addPerFrameHandler;
+};

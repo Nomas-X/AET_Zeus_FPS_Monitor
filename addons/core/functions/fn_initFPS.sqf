@@ -53,42 +53,49 @@ ZFM_ScriptHandle = [] execVM QPATHTOF(script_fps.sqf);
 		if ((hasInterface) && (!isDedicated)) then {
 			DNI_ZeusFPSMonitor_Updated = [{
 				if ((!hasInterface) || (isDedicated)) exitWith {};
-				if (!ZFM_ModToggle == true) exitWith {};
+				if (!ZFM_ModToggle) exitWith {};
 
 				if ((isNil "DNI_FPSDiagActive") || { (DNI_FPSDiagActive) }) then {
 					DNI_FPSDiagActive = true;
 
 					// --- Local cache variables (define only once)
-					if (isNil "DNI_lastFPS") then { DNI_lastFPS = -1; };
-					if (isNil "DNI_lastPing") then { DNI_lastPing = -1; };
-					if (isNil "DNI_lastBW") then { DNI_lastBW = -1; };
-					if (isNil "DNI_lastDesync") then { DNI_lastDesync = -1; };
+					// if (isNil "DNI_lastFPS") then { DNI_lastFPS = -1; };
+					// if (isNil "DNI_lastPing") then { DNI_lastPing = -1; };
+					// if (isNil "DNI_lastBW") then { DNI_lastBW = -1; };
+					// if (isNil "DNI_lastDesync") then { DNI_lastDesync = -1; };
+
+					private _playerData = [-1, -1 ,-1];
 
 					// --- FPS update
 					private _fps = floor diag_fps;
-					if (_fps != DNI_lastFPS) then {
-						DNI_lastFPS = _fps;
-						player setVariable ["DNI_PlayerFPS", _fps, true];
-					};
+					// if (_fps != DNI_lastFPS) then {
+					// 	DNI_lastFPS = _fps;
+					// 	player setVariable ["DNI_PlayerFPS", _fps, true];
+					// };
+					_playerData set [0, _fps];
 
 					if (isMultiplayer) then {
 						private _userInfo = getUserInfo (getPlayerID player);
 						_userInfo params ["_playerID", "_ownerId", "_playerUID", "_profileName", "_displayName", "_steamName", "_clientState", "_isHC", "_adminState", ["_networkInfo", [-1,-1,-1]], ["_unit", player]];
 						_networkInfo params [["_avgPing", -1], ["_avgBandwidth", -1], ["_desync", -1]];
 
-						if (_avgPing != DNI_lastPing) then {
-							DNI_lastPing = _avgPing;
-							player setVariable ["DNI_avgPing", _avgPing, true];
-						};
-						if (_avgBandwidth != DNI_lastBW) then {
-							DNI_lastBW = _avgBandwidth;
-							player setVariable ["DNI_avgBandwidth", _avgBandwidth, true];
-						};
-						if (_desync != DNI_lastDesync) then {
-							DNI_lastDesync = _desync;
-							player setVariable ["DNI_desync", _desync, true];
-						};
+						// if (_avgPing != DNI_lastPing) then {
+						// 	DNI_lastPing = _avgPing;
+						// 	player setVariable ["DNI_avgPing", _avgPing, true];
+						// };
+						// if (_avgBandwidth != DNI_lastBW) then {
+						// 	DNI_lastBW = _avgBandwidth;
+						// 	player setVariable ["DNI_avgBandwidth", _avgBandwidth, true];
+						// };
+						// if (_desync != DNI_lastDesync) then {
+						// 	DNI_lastDesync = _desync;
+						// 	player setVariable ["DNI_desync", _desync, true];
+						// };
+						_playerData set [1, _avgPing];
+						_playerData set[2, _desync];
 					};
+					player setVariable [QGVAR(playerData), _playerData, 2];
+					diag_log format ["AET_ZFM_core_fnc_initFPS data sent to server by %1 | %2", getPlayerUID player, name player];
 				};
 			}, 1, []] call CBA_fnc_addPerFrameHandler;
 		};
@@ -101,5 +108,3 @@ ZFM_ScriptHandle = [] execVM QPATHTOF(script_fps.sqf);
 		};
 	} forEach allPlayers;
 };
-
-

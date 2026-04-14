@@ -23,7 +23,7 @@ I also added some more conditions and safety checks. New keybind were added with
 */
 
 missionNamespace setVariable  ["ZFM_ModToggle",SET(toggle)];
-if (!ZFM_ModToggle == true) exitWith {};
+if (!ZFM_ModToggle) exitWith {};
 
 /////////////////////////////////////////////////////////
 ////////////Script Written by DriftingNitro//////////////
@@ -58,13 +58,18 @@ missionNamespace setVariable  ["ZFM_TextLowSize",SET(low_text_size)];
 missionNamespace setVariable  ["ZFM_TextLowOutline",SET(low_text_outline)];
 
 addMissionEventHandler ["Draw3D", {
+	if (isNil QGVAR(PlayersDataMap)) exitWith {};
 	{
+		private _playerData = GVAR(PlayersDataMap) getOrDefault [(getPlayerUID _x), [-1,-1,-1,-1], false];
 		_distance = (curatorCamera modelToWorld [0,0,0]) distance _x;
 		//if camera is closer than ZFM_FPSViewDistanceMin (Default 0) and farther than ZFM_FPSViewDistanceMax (Default 500) meters away from the targets the text will not display
 		if (_distance > ZFM_FPSViewDistanceMin and _distance < ZFM_FPSViewDistanceMax) then {
-			private _playerFPS = _x getVariable ["DNI_PlayerFPS", -1];
-			private _avgPing = _x getVariable ["DNI_avgPing", -1];
-			private _desync = _x getVariable ["DNI_desync", -1];
+			// private _playerFPS = _x getVariable ["DNI_PlayerFPS", -1];
+			// private _avgPing = _x getVariable ["DNI_avgPing", -1];
+			// private _desync = _x getVariable ["DNI_desync", -1];
+			private _playerFPS = _playerData # 0;
+			private _avgPing = _playerData # 1;
+			private _desync = _playerData # 2;
 			
 			switch (missionNamespace getVariable ["DNI_MonitorMode", 0]) do {
 					case 0: {

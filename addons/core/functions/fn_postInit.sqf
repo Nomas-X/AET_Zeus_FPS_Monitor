@@ -50,11 +50,11 @@ private _code = {
 			};
 		}] call CBA_fnc_addPlayerEventHandler;
 
-		[] call FUNC(displayMonitor);
 	
 		[] spawn {
 			waitUntil {!isNull (findDisplay 46)};
 			uiSleep 1;
+			[] call FUNC(displayMonitor);
 
 			{
 				// Only remoteExec to players

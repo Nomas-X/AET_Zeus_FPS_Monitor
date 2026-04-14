@@ -19,6 +19,19 @@ Example:
 
 GVAR(zeusList) = [];
 
+addMissionEventHandler ["OnUserClientStateChanged", {
+	params ["_networkId", "_clientStateNumber", "_clientState"];
+
+    // Give the JIP client a moment to finish loading before pushing the function
+	if (_clientStateNumber > 8) then {
+		private _owner = getUserInfo _networkId;
+		_owner = _owner#1;
+
+		_owner publicVariableClient "DNI_fnc_startClientStatMonitor";
+	    [] remoteExec ["DNI_fnc_startClientStatMonitor", _owner, false];
+	};
+}];
+
 addMissionEventHandler ["PlayerDisconnected", {
 	params ["_id", "_uid", "_name", "_jip", "_owner", "_idstr"];
 
@@ -28,8 +41,6 @@ addMissionEventHandler ["PlayerDisconnected", {
 			diag_log format ["%1 player disconnected and removed from Zeus list %2 | %3", QFUNC(handleDataServer), _uid, _name];
 		};
 	} forEach GVAR(zeusList);
-
-
 }];
 
 GVAR(PlayersDataMap) = createHashMap;

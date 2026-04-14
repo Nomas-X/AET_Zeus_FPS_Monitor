@@ -50,19 +50,12 @@ private _code = {
 			};
 		}] call CBA_fnc_addPlayerEventHandler;
 
-	
-		[] spawn {
-			waitUntil {!isNull (findDisplay 46)};
-			uiSleep 1;
-			[] call FUNC(displayMonitor);
-
+		[
+			{!isNull (findDisplay 312)},
 			{
-				// Only remoteExec to players
-				if (!isNull _x) then {
-					[] remoteExec [QFUNC(startClientStatMonitor), _x, false];
-				};
-			} forEach allPlayers;
-		};
+				[] call FUNC(displayMonitor);
+			}
+		] call CBA_fnc_waitUntilAndExecute
 	};
 };
 

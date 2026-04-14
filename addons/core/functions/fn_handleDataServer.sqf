@@ -45,6 +45,13 @@ addMissionEventHandler ["PlayerDisconnected", {
 
 GVAR(PlayersDataMap) = createHashMap;
 
+{
+	// Only remoteExec to players
+	if (!isNull _x) then {
+		[] remoteExec [QFUNC(startClientStatMonitor), _x, false];
+	};
+} forEach allPlayers;
+
 if (isMultiplayer) then {
 	[
 		{

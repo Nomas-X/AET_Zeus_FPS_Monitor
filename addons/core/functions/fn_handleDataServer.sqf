@@ -25,7 +25,7 @@ addMissionEventHandler ["PlayerDisconnected", {
 	{
 		if (!isPlayer _x) then {
 			GVAR(zeusList) = GVAR(zeusList) - [_x];
-			diag_log format ["AET_ZFM_core_fnc_handleDataServer player disconnected and removed from Zeus list %1 | %2", _uid, _name];
+			diag_log format ["%1 player disconnected and removed from Zeus list %2 | %3", QFUNC(handleDataServer), _uid, _name];
 		};
 	} forEach GVAR(zeusList);
 
@@ -44,7 +44,7 @@ GVAR(PlayersDataMap) = createHashMap;
 
 		{
 			(owner _x) publicVariableClient QGVAR(PlayersDataMap);
-			diag_log format ["AET_ZFM_core_fnc_handleDataServer data sent to %1 | %2", getPlayerUID _x, name _x];
+			diag_log format ["%1 data sent to %2 | %3", QFUNC(handleDataServer), getPlayerUID _x, name _x];
 
 		} forEach GVAR(zeusList);
 	},

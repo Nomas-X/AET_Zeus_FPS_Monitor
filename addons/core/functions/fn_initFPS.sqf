@@ -95,7 +95,7 @@ ZFM_ScriptHandle = [] execVM QPATHTOF(script_fps.sqf);
 						_playerData set[2, _desync];
 					};
 					player setVariable [QGVAR(playerData), _playerData, 2];
-					diag_log format ["AET_ZFM_core_fnc_initFPS data sent to server by %1 | %2", getPlayerUID player, name player];
+					diag_log format ["%1 data sent to server by %2 | %3", QFUNC(initFPS), getPlayerUID player, name player];
 				};
 			}, 1, []] call CBA_fnc_addPerFrameHandler;
 		};

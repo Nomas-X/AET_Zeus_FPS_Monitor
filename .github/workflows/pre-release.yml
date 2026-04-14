@@ -34,15 +34,15 @@ jobs:
       - name: Move release to releases folder
         run: |
           version="${{ github.event.release.tag_name }}"
-          mv .hemttout/release "@AET_AUX-${version}"
+          mv .hemttout/release "@AET_Zeus_FPS_Monitor-${version}"
 
       - name: Zip release
-        run: zip -r "@AET_AUX-${{ github.event.release.tag_name }}.zip" "./@AET_AUX-${{ github.event.release.tag_name }}"
+        run: zip -r "@AET_Zeus_FPS_Monitor-${{ github.event.release.tag_name }}.zip" "./@AET_Zeus_FPS_Monitor-${{ github.event.release.tag_name }}"
 
       - name: Update Release with Files
         uses: softprops/action-gh-release@v1
         with:
-          files: "./@AET_AUX-${{ github.event.release.tag_name }}.zip"
+          files: "./@AET_Zeus_FPS_Monitor-${{ github.event.release.tag_name }}.zip"
           draft: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -50,10 +50,10 @@ jobs:
       - name: Update to Steam Workshop (pre-release)
         uses: arma-actions/workshop-upload@v1
         with:
-          itemId: '3519308685'
-          contentPath: "./@AET_AUX-${{ github.event.release.tag_name }}"
+          itemId: '3706470196'
+          contentPath: "./@AET_Zeus_FPS_Monitor-${{ github.event.release.tag_name }}"
           changelog: |
-            https://github.com/Nomas-X/AET_AUX/releases/tag/${{ github.event.release.tag_name }}
+            https://github.com/Nomas-X/AET_Zeus_FPS_Monitor/releases/tag/${{ github.event.release.tag_name }}
 
             ${{ github.event.release.body }}
         env:

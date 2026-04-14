@@ -22,9 +22,9 @@
 	{
 		["CBA_SettingChanged", 
 			{
-			terminate ZFM_ScriptHandle;
+			terminate GVAR(ScriptHandle);
 			[] call FUNC(displayMonitor);
-			DNI_showFrames = false;
+			GVAR(showFrames) = false;
 			}
 		] call CBA_fnc_addEventHandler;
 	}
@@ -38,7 +38,7 @@
 	{
 		["CBA_SettingChanged", 
 			{
-			terminate ZFM_ScriptHandle;
+			terminate GVAR(ScriptHandle);
 			[] call FUNC(displayMonitor);
 			}
 		] call CBA_fnc_addEventHandler;
@@ -54,7 +54,7 @@
 	{
 		["CBA_SettingChanged", 
 			{
-			terminate ZFM_ScriptHandle;
+			terminate GVAR(ScriptHandle);
 			[] call FUNC(displayMonitor);
 			}
 		] call CBA_fnc_addEventHandler;
@@ -69,7 +69,7 @@
 	{
 		["CBA_SettingChanged", 
 			{
-			terminate ZFM_ScriptHandle;
+			terminate GVAR(ScriptHandle);
 			[] call FUNC(displayMonitor);
 			}
 		] call CBA_fnc_addEventHandler;
@@ -84,7 +84,7 @@
 	{
 		["CBA_SettingChanged", 
 			{
-				terminate ZFM_ScriptHandle;
+				terminate GVAR(ScriptHandle);
 				[] call FUNC(displayMonitor);
 			}
 		] call CBA_fnc_addEventHandler;
@@ -129,7 +129,7 @@
 	{
 		["CBA_SettingChanged", 
 			{
-			terminate ZFM_ScriptHandle;
+			terminate GVAR(ScriptHandle);
 			[] call FUNC(displayMonitor);
 			}
 		] call CBA_fnc_addEventHandler;
@@ -144,7 +144,7 @@
 	{
 		["CBA_SettingChanged", 
 			{
-			terminate ZFM_ScriptHandle;
+			terminate GVAR(ScriptHandle);
 			[] call FUNC(displayMonitor);
 			}
 		] call CBA_fnc_addEventHandler;
@@ -160,7 +160,7 @@
 	{
 		["CBA_SettingChanged", 
 			{
-			terminate ZFM_ScriptHandle;
+			terminate GVAR(ScriptHandle);
 			[] call FUNC(displayMonitor);
 			}
 		] call CBA_fnc_addEventHandler;
@@ -175,7 +175,7 @@
 	{
 		["CBA_SettingChanged", 
 			{
-			terminate ZFM_ScriptHandle;
+			terminate GVAR(ScriptHandle);
 			[] call FUNC(displayMonitor);
 			}
 		] call CBA_fnc_addEventHandler;
@@ -190,7 +190,7 @@
 	{
 		["CBA_SettingChanged", 
 			{
-			terminate ZFM_ScriptHandle;
+			terminate GVAR(ScriptHandle);
 			[] call FUNC(displayMonitor);
 			}
 		] call CBA_fnc_addEventHandler;
@@ -205,7 +205,7 @@
 	{
 		["CBA_SettingChanged", 
 			{
-			terminate ZFM_ScriptHandle;
+			terminate GVAR(ScriptHandle);
 			[] call FUNC(displayMonitor);
 			}
 		] call CBA_fnc_addEventHandler;
@@ -220,7 +220,7 @@
 	{
 		["CBA_SettingChanged", 
 			{
-			terminate ZFM_ScriptHandle;
+			terminate GVAR(ScriptHandle);
 			[] call FUNC(displayMonitor);
 			}
 		] call CBA_fnc_addEventHandler;
@@ -234,37 +234,22 @@
 	{
 		["CBA_SettingChanged", 
 			{
-			terminate ZFM_ScriptHandle;
+			terminate GVAR(ScriptHandle);
 			[] call FUNC(displayMonitor);
 			}
 		] call CBA_fnc_addEventHandler;
 	}
 ] call CBA_fnc_addSetting;
-/*
-	[
-		"zfm_DesyncAlertSytem_toggle", "CHECKBOX",
-		["Desync: Alert System", "[Default: True] Will send a message with icon to all on the server whenever there is desync"],
-		["[Forges of Dorn] Improved Zeus Monitor", "Desync"], true, false,
-		{
-			["CBA_SettingChanged", 
-				{
-				terminate ZFM_ScriptHandle;
-				[] call FUNC(displayMonitor);
-				}
-			] call CBA_fnc_addEventHandler;
-		}
-	] call CBA_fnc_addSetting;
-*/
 
 //keybinds
 #include "\a3\ui_f\hpp\defineDIKCodes.inc"
 
 ["[Forges of Dorn] Improved Zeus Monitor", "switchModes", ["Switch Monitor Mode", "hello there! :))"], {
 
-	_CurrentMode = missionNamespace getVariable ["DNI_MonitorMode", 0];
+	_CurrentMode = missionNamespace getVariable [QGVAR(MonitorMode), 0];
 	_NewMode = _CurrentMode + 1;
 	if (_NewMode >= 3) then { _NewMode = 0; };
-	missionNamespace setVariable ["DNI_MonitorMode", _NewMode];
+	missionNamespace setVariable [QGVAR(MonitorMode), _NewMode];
 
 }, {}, [DIK_GRAVE, [true, true, false]]] call cba_fnc_addKeybind;
 
@@ -274,7 +259,7 @@
 	["Toggle Display", "Toggles whether FPS/Ping/Desync HUD elements are shown."], 
 	{
 		if !(SET(toggle)) exitWith {};
-		DNI_showFrames = !DNI_showFrames;
+		GVAR(showFrames) = !GVAR(showFrames);
 	}, 
 	{}, 
 	[DIK_GRAVE, [false, true, false]]  // Ctrl only

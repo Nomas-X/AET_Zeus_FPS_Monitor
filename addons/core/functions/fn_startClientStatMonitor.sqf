@@ -19,17 +19,17 @@ Example:
 */
 
 if (!hasInterface || isDedicated) exitWith {};
-if (!isNil "DNI_FPSDiag_Initialized") exitWith {};
+if (!isNil QGVAR(FPSDiag_Initialized)) exitWith {};
 
-DNI_FPSDiag_Initialized = true;
+GVAR(FPSDiag_Initialized) = true;
 
 if ((hasInterface) && (!isDedicated)) then {
-	DNI_ZeusFPSMonitor_Updated = [{
+	GVAR(ZeusFPSMonitor_Updated) = [{
 		if ((!hasInterface) || (isDedicated)) exitWith {};
-		if (!ZFM_ModToggle) exitWith {};
+		if (!GVAR(ModToggle)) exitWith {};
 
-		if ((isNil "DNI_FPSDiagActive") || { (DNI_FPSDiagActive) }) then {
-			DNI_FPSDiagActive = true;
+		if ((isNil QGVAR(FPSDiagActive)) || { (GVAR(FPSDiagActive)) }) then {
+			GVAR(FPSDiagActive) = true;
 
 			private _fps = floor diag_fps;
 			

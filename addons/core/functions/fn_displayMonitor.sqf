@@ -21,7 +21,7 @@ Example:
 	[] call AET_ZFM_core_fnc_displayMonitor;
 */
 
-ZFM_ScriptHandle = [] spawn {
+GVAR(ScriptHandle) = [] spawn {
 	/*
 	This an edited version of DriftingNitro's Zeus Framerate Monitor. Full credit to the original Authors.
 	Hints, System Messages and obsolete Code have been removed.
@@ -44,8 +44,8 @@ ZFM_ScriptHandle = [] spawn {
 	- Phenosi
 	*/
 
-	missionNamespace setVariable  ["ZFM_ModToggle",SET(toggle)];
-	if (!ZFM_ModToggle) exitWith {};
+	missionNamespace setVariable  [QGVAR(ModToggle),SET(toggle)];
+	if (!GVAR(ModToggle)) exitWith {};
 
 	/////////////////////////////////////////////////////////
 	////////////Script Written by DriftingNitro//////////////
@@ -66,48 +66,48 @@ ZFM_ScriptHandle = [] spawn {
 	//player will have their FPS appear beneath them       //
 	/////////////////////////////////////////////////////////
 		
-	DNI_showFrames = true;
+	GVAR(showFrames) = true;
 
-	missionNamespace setVariable  ["ZFM_FPSViewDistanceMin",SET(viewdistance_min)];
-	missionNamespace setVariable  ["ZFM_FPSViewDistanceMax",SET(viewdistance_max)];
-	missionNamespace setVariable  ["ZFM_LowFPSLimit",SET(low_fps_limit)];
-	missionNamespace setVariable  ["ZFM_Font",SET(font)];
-	missionNamespace setVariable  ["ZFM_TextRegularColour",SET(regular_text_colour)];
-	missionNamespace setVariable  ["ZFM_TextRegularSize",SET(regular_text_size)];
-	missionNamespace setVariable  ["ZFM_TextRegularOutline",SET(regular_text_outline)];
-	missionNamespace setVariable  ["ZFM_TextLowColour",SET(low_text_colour)];
-	missionNamespace setVariable  ["ZFM_TextLowSize",SET(low_text_size)];
-	missionNamespace setVariable  ["ZFM_TextLowOutline",SET(low_text_outline)];
+	missionNamespace setVariable  [QGVAR(FPSViewDistanceMin),SET(viewdistance_min)];
+	missionNamespace setVariable  [QGVAR(FPSViewDistanceMax),SET(viewdistance_max)];
+	missionNamespace setVariable  [QGVAR(LowFPSLimit),SET(low_fps_limit)];
+	missionNamespace setVariable  [QGVAR(Font),SET(font)];
+	missionNamespace setVariable  [QGVAR(TextRegularColour),SET(regular_text_colour)];
+	missionNamespace setVariable  [QGVAR(TextRegularSize),SET(regular_text_size)];
+	missionNamespace setVariable  [QGVAR(TextRegularOutline),SET(regular_text_outline)];
+	missionNamespace setVariable  [QGVAR(TextLowColour),SET(low_text_colour)];
+	missionNamespace setVariable  [QGVAR(TextLowSize),SET(low_text_size)];
+	missionNamespace setVariable  [QGVAR(TextLowOutline),SET(low_text_outline)];
 
 	addMissionEventHandler ["Draw3D", {
 		if (isNil QGVAR(PlayersDataMap)) exitWith {};
 		{
 			private _playerData = GVAR(PlayersDataMap) getOrDefault [(getPlayerUID _x), [-1,-1,-1], false];
 			_distance = (curatorCamera modelToWorld [0,0,0]) distance _x;
-			//if camera is closer than ZFM_FPSViewDistanceMin (Default 0) and farther than ZFM_FPSViewDistanceMax (Default 500) meters away from the targets the text will not display
-			if (_distance > ZFM_FPSViewDistanceMin and _distance < ZFM_FPSViewDistanceMax) then {
+			//if camera is closer than FPSViewDistanceMin (Default 0) and farther than FPSViewDistanceMax (Default 500) meters away from the targets the text will not display
+			if (_distance > GVAR(FPSViewDistanceMin) and _distance < GVAR(FPSViewDistanceMax)) then {
 				private _playerFPS = _playerData # 0;
 				private _avgPing = _playerData # 1;
 				private _desync = _playerData # 2;
 				
-				switch (missionNamespace getVariable ["DNI_MonitorMode", 0]) do {
+				switch (missionNamespace getVariable [QGVAR(MonitorMode), 0]) do {
 						case 0: {
 								//FPS
-								//if the FPS is below ZFM_LowFPSLimit (Default 20) it turns red and becomes more visible for zeus/admin to see so they are aware
-								if ((_playerFPS isNotEqualTo -1) and { _playerFPS  < ZFM_LowFPSLimit }) then {
-									if(DNI_showFrames) then {
+								//if the FPS is below LowFPSLimit (Default 20) it turns red and becomes more visible for zeus/admin to see so they are aware
+								if ((_playerFPS isNotEqualTo -1) and { _playerFPS  < GVAR(LowFPSLimit) }) then {
+									if(GVAR(showFrames)) then {
 										drawIcon3D
 										[
 											"",//Path to image displayed near text
-											ZFM_TextLowColour,//color of the text using RGBA
+											GVAR(TextLowColour),//color of the text using RGBA
 											ASLToAGL getPosASLVisual _x,//position of the text _x referring to the player in 'allPlayers'
 											1,//Width
 											2,//height from position, below
 											0,//angle
 											format["FPS: %1", str _playerFPS],//text to be displayed
-											ZFM_TextLowOutline,//shadow on text, 0=none,1=shadow,2=outline
-											ZFM_TextLowSize,//text size
-											ZFM_Font,//text font
+											GVAR(TextLowOutline),//shadow on text, 0=none,1=shadow,2=outline
+											GVAR(TextLowSize),//text size
+											GVAR(Font),//text font
 											"center"//align text left, right, or center
 										];
 									};
@@ -115,19 +115,19 @@ ZFM_ScriptHandle = [] spawn {
 								//if the FPS is above 20 text is smaller and less visible as to not concern zeus/admin as much
 								else
 								{
-									if(DNI_showFrames) then {
+									if(GVAR(showFrames)) then {
 										drawIcon3D
 										[
 											"",//Path to image displayed near text
-											ZFM_TextRegularColour,//color of the text using RGBA
+											GVAR(TextRegularColour),//color of the text using RGBA
 											ASLToAGL getPosASLVisual _x,//position of the text _x referring to the player in 'allPlayers'
 											1,//Width
 											2,//height from position, below
 											0,//angle
 											format["FPS: %1", str _playerFPS],//text to be displayed
-											ZFM_TextRegularOutline,//shadow on text, 0=none,1=shadow,2=outline
-											ZFM_TextRegularSize,//text size
-											ZFM_Font,//text font
+											GVAR(TextRegularOutline),//shadow on text, 0=none,1=shadow,2=outline
+											GVAR(TextRegularSize),//text size
+											GVAR(Font),//text font
 											"center"//align text left, right, or center
 										];
 									};
@@ -136,36 +136,36 @@ ZFM_ScriptHandle = [] spawn {
 						case 1: { 
 								//PING 
 								if ((_avgPing isNotEqualTo -1) and { _avgPing >= SET(high_ping_limit) }) then {
-									if(DNI_showFrames) then {
+									if(GVAR(showFrames)) then {
 										drawIcon3D
 										[
 											"",//Path to image displayed near text
-											ZFM_TextLowColour,//color of the text using RGBA
+											GVAR(TextLowColour),//color of the text using RGBA
 											ASLToAGL getPosASLVisual _x,//position of the text _x referring to the player in 'allPlayers'
 											1,//Width
 											2,//height from position, below
 											0,//angle
 											format["Ping: %1", str _avgPing],//text to be displayed
-											ZFM_TextLowOutline,//shadow on text, 0=none,1=shadow,2=outline
-											ZFM_TextLowSize,//text size
-											ZFM_Font,//text font
+											GVAR(TextLowOutline),//shadow on text, 0=none,1=shadow,2=outline
+											GVAR(TextLowSize),//text size
+											GVAR(Font),//text font
 											"center"//align text left, right, or center
 										];
 									};
 								} else {
-									if((DNI_showFrames)) then {
+									if((GVAR(showFrames))) then {
 										drawIcon3D
 										[
 											"",//Path to image displayed near text
-											ZFM_TextRegularColour,//color of the text using RGBA
+											GVAR(TextRegularColour),//color of the text using RGBA
 											ASLToAGL getPosASLVisual _x,//position of the text _x referring to the player in 'allPlayers'
 											1,//Width
 											2,//height from position, below
 											0,//angle
 											format["Ping: %1", str _avgPing],//text to be displayed
-											ZFM_TextRegularOutline,//shadow on text, 0=none,1=shadow,2=outline
-											ZFM_TextRegularSize,//text size
-											ZFM_Font,//text font
+											GVAR(TextRegularOutline),//shadow on text, 0=none,1=shadow,2=outline
+											GVAR(TextRegularSize),//text size
+											GVAR(Font),//text font
 											"center"//align text left, right, or center
 										];
 									};
@@ -174,7 +174,7 @@ ZFM_ScriptHandle = [] spawn {
 						case 2: {
 								//Desync 
 								if ((_desync isNotEqualTo -1) and { _desync >= 2000 }) then {
-									if(DNI_showFrames) then {
+									if(GVAR(showFrames)) then {
 										if (SET(DesyncVisual_toggle)) then {
 											if ((_desync >= 19999)) then {
 												drawIcon3D
@@ -186,9 +186,9 @@ ZFM_ScriptHandle = [] spawn {
 													1,//height from position, below
 													0,//angle
 													format["%1", str _desync],//text to be displayed
-													ZFM_TextLowOutline,//shadow on text, 0=none,1=shadow,2=outline
-													ZFM_TextLowSize,//text size
-													ZFM_Font,//text font
+													GVAR(TextLowOutline),//shadow on text, 0=none,1=shadow,2=outline
+													GVAR(TextLowSize),//text size
+													GVAR(Font),//text font
 													"center"//align text left, right, or center
 												];
 											} else {
@@ -201,9 +201,9 @@ ZFM_ScriptHandle = [] spawn {
 													1,//height from position, below
 													0,//angle
 													format["%1", str _desync],//text to be displayed
-													ZFM_TextLowOutline,//shadow on text, 0=none,1=shadow,2=outline
-													ZFM_TextLowSize,//text size
-													ZFM_Font,//text font
+													GVAR(TextLowOutline),//shadow on text, 0=none,1=shadow,2=outline
+													GVAR(TextLowSize),//text size
+													GVAR(Font),//text font
 													"center"//align text left, right, or center
 												];										
 											};
@@ -212,15 +212,15 @@ ZFM_ScriptHandle = [] spawn {
 												drawIcon3D
 												[
 													"",//Path to image displayed near text
-													ZFM_TextLowColour,//color of the text using RGBA
+													GVAR(TextLowColour),//color of the text using RGBA
 													ASLToAGL getPosASLVisual _x,//position of the text _x referring to the player in 'allPlayers'
 													1,//Width
 													2,//height from position, below
 													0,//angle
 													format["Desync: %1", str _desync],//text to be displayed
-													ZFM_TextLowOutline,//shadow on text, 0=none,1=shadow,2=outline
-													ZFM_TextLowSize,//text size
-													ZFM_Font,//text font
+													GVAR(TextLowOutline),//shadow on text, 0=none,1=shadow,2=outline
+													GVAR(TextLowSize),//text size
+													GVAR(Font),//text font
 													"center"//align text left, right, or center
 												];
 											} else {
@@ -233,16 +233,16 @@ ZFM_ScriptHandle = [] spawn {
 													2,//height from position, below
 													0,//angle
 													format["Desync: %1", str _desync],//text to be displayed
-													ZFM_TextLowOutline,//shadow on text, 0=none,1=shadow,2=outline
-													ZFM_TextLowSize,//text size
-													ZFM_Font,//text font
+													GVAR(TextLowOutline),//shadow on text, 0=none,1=shadow,2=outline
+													GVAR(TextLowSize),//text size
+													GVAR(Font),//text font
 													"center"//align text left, right, or center
 												];										
 											};
 										};
 									};
 								} else {
-									if (DNI_showFrames) then {
+									if (GVAR(showFrames)) then {
 										if (SET(DesyncVisual_toggle)) then {
 											drawIcon3D
 											[
@@ -253,9 +253,9 @@ ZFM_ScriptHandle = [] spawn {
 												1,//height from position, below
 												0,//angle
 												format["%1", str _desync],//text to be displayed Desync: %1
-												ZFM_TextRegularOutline,//shadow on text, 0=none,1=shadow,2=outline
-												ZFM_TextRegularSize,//text size
-												ZFM_Font,//text font
+												GVAR(TextRegularOutline),//shadow on text, 0=none,1=shadow,2=outline
+												GVAR(TextRegularSize),//text size
+												GVAR(Font),//text font
 												"center"//align text left, right, or center
 											];
 										} else {
@@ -268,9 +268,9 @@ ZFM_ScriptHandle = [] spawn {
 												2,//height from position, below
 												0,//angle
 												format["Desync: %1", str _desync],//text to be displayed Desync: %1
-												ZFM_TextRegularOutline,//shadow on text, 0=none,1=shadow,2=outline
-												ZFM_TextRegularSize,//text size
-												ZFM_Font,//text font
+												GVAR(TextRegularOutline),//shadow on text, 0=none,1=shadow,2=outline
+												GVAR(TextRegularSize),//text size
+												GVAR(Font),//text font
 												"center"//align text left, right, or center
 											];
 										};
@@ -278,19 +278,19 @@ ZFM_ScriptHandle = [] spawn {
 								};
 						};
 						default { 
-							if (DNI_showFrames) then {
+							if (GVAR(showFrames)) then {
 								drawIcon3D
 								[
 									"",//Path to image displayed near text
-									ZFM_TextLowColour,//color of the text using RGBA
+									GVAR(TextLowColour),//color of the text using RGBA
 									ASLToAGL getPosASLVisual _x,//position of the text _x referring to the player in 'allPlayers'
 									1,//Width
 									1,//height from position, below
 									0,//angle
 									format["N/A %1", str _playerFPS],//text to be displayed
-									ZFM_TextRegularOutline,//shadow on text, 0=none,1=shadow,2=outline
-									ZFM_TextRegularSize,//text size
-									ZFM_Font,//text font
+									GVAR(TextRegularOutline),//shadow on text, 0=none,1=shadow,2=outline
+									GVAR(TextRegularSize),//text size
+									GVAR(Font),//text font
 									"center"//align text left, right, or center
 								];
 							};

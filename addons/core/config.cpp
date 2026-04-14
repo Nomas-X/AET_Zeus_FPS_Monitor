@@ -49,7 +49,7 @@ class CfgNotifications
 		priority=0;
 		difficulty[]={};
 	};
-	class ZFM_DesyncMild
+	class GVAR(DesyncMild)
 	{
 		title="MILD DESYNC";
 		iconPicture="\A3\ui_f\data\gui\rsc\rscpendinginvitation\desynclow_ca.paa";
@@ -58,7 +58,7 @@ class CfgNotifications
 		duration=5;
 		priority=6;
 	};
-	class ZFM_DesyncSevere
+	class GVAR(DesyncSevere)
 	{
 		title="SEVERE DESYNC";
 		iconPicture="\A3\ui_f\data\gui\rsc\rscpendinginvitation\desynchigh_ca.paa";
@@ -67,7 +67,7 @@ class CfgNotifications
 		duration=6;
 		priority=9;
 	};
-	class ZFM_DesyncResolved
+	class GVAR(DesyncResolved)
 	{
 		title="CONNECTION STABLE";
 		iconPicture="\A3\ui_f\data\igui\rsctitles\rschvtphase\jac_a3_signal_4_ca.paa";

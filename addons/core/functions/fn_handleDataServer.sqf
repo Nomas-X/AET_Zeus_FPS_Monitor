@@ -38,9 +38,11 @@ GVAR(PlayersDataMap) = createHashMap;
 	{
 		{
 			if (!isNull _x) then {
-				private _netWorkData = (getUserInfo (getPlayerID _x)) # 9;
-
-				GVAR(PlayersDataMap) set [getPlayerUID _x, _x getVariable [QGVAR(playerData), [-1, _networkInfo#0, _networkInfo#2]]];
+				private _netWorkData = [-1, -1, -1];
+				if (isMultiplayer) then {
+					_netWorkData = (getUserInfo (getPlayerID _x)) # 9;
+				};
+				GVAR(PlayersDataMap) set [getPlayerUID _x, _x getVariable [QGVAR(playerData), [-1, _netWorkData#0, _netWorkData#2]]];
 			};
 		} forEach allPlayers;
 

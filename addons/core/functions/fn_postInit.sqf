@@ -26,6 +26,7 @@ private _code = {
 		publicVariableServer QFUNC(handleDataServer);
 		publicVariableServer QFUNC(registerZeus);
 		publicVariableServer QFUNC(unregisterZeus);
+		publicVariableServer QFUNC(startClientStatMonitor);
 
 		[] remoteExec [QFUNC(handleDataServer) ,2, false];
 		diag_log format ["%1 ran by Server", QFUNC(postInit)];
@@ -48,6 +49,20 @@ private _code = {
 				diag_log format ["%1 Zeus interface closed by %2 | %3", QFUNC(postInit), getPlayerID player, name player];
 			};
 		}] call CBA_fnc_addPlayerEventHandler;
+
+		[] call FUNC(displayMonitor);
+	
+		[] spawn {
+			waitUntil {!isNull (findDisplay 46)};
+			uiSleep 1;
+
+			{
+				// Only remoteExec to players
+				if (!isNull _x) then {
+					[] remoteExec [QFUNC(startClientStatMonitor), _x, false];
+				};
+			} forEach allPlayers;
+		};
 	};
 };
 

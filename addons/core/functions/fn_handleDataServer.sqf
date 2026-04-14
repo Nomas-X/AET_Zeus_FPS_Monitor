@@ -27,8 +27,8 @@ addMissionEventHandler ["OnUserClientStateChanged", {
 		private _owner = getUserInfo _networkId;
 		_owner = _owner#1;
 
-		_owner publicVariableClient "DNI_fnc_startClientStatMonitor";
-	    [] remoteExec ["DNI_fnc_startClientStatMonitor", _owner, false];
+		_owner publicVariableClient QFUNC(startClientStatMonitor);
+	    [] remoteExec [QFUNC(startClientStatMonitor), _owner, false];
 	};
 }];
 

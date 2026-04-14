@@ -23,7 +23,7 @@
 		["CBA_SettingChanged", 
 			{
 			terminate ZFM_ScriptHandle;
-			ZFM_ScriptHandle = [] execVM QPATHTOF(script_fps.sqf);
+			[] call FUNC(displayMonitor);
 			DNI_showFrames = false;
 			}
 		] call CBA_fnc_addEventHandler;
@@ -39,7 +39,7 @@
 		["CBA_SettingChanged", 
 			{
 			terminate ZFM_ScriptHandle;
-			ZFM_ScriptHandle = [] execVM QPATHTOF(script_fps.sqf);
+			[] call FUNC(displayMonitor);
 			}
 		] call CBA_fnc_addEventHandler;
 	}
@@ -55,7 +55,7 @@
 		["CBA_SettingChanged", 
 			{
 			terminate ZFM_ScriptHandle;
-			ZFM_ScriptHandle = [] execVM QPATHTOF(script_fps.sqf);
+			[] call FUNC(displayMonitor);
 			}
 		] call CBA_fnc_addEventHandler;
 	}
@@ -70,7 +70,7 @@
 		["CBA_SettingChanged", 
 			{
 			terminate ZFM_ScriptHandle;
-			ZFM_ScriptHandle = [] execVM QPATHTOF(script_fps.sqf);
+			[] call FUNC(displayMonitor);
 			}
 		] call CBA_fnc_addEventHandler;
 	}
@@ -85,7 +85,7 @@
 		["CBA_SettingChanged", 
 			{
 				terminate ZFM_ScriptHandle;
-				ZFM_ScriptHandle = [] execVM QPATHTOF(script_fps.sqf);
+				[] call FUNC(displayMonitor);
 			}
 		] call CBA_fnc_addEventHandler;
 	}
@@ -130,7 +130,7 @@
 		["CBA_SettingChanged", 
 			{
 			terminate ZFM_ScriptHandle;
-			ZFM_ScriptHandle = [] execVM QPATHTOF(script_fps.sqf);
+			[] call FUNC(displayMonitor);
 			}
 		] call CBA_fnc_addEventHandler;
 	}
@@ -145,7 +145,7 @@
 		["CBA_SettingChanged", 
 			{
 			terminate ZFM_ScriptHandle;
-			ZFM_ScriptHandle = [] execVM QPATHTOF(script_fps.sqf);
+			[] call FUNC(displayMonitor);
 			}
 		] call CBA_fnc_addEventHandler;
 	}
@@ -161,7 +161,7 @@
 		["CBA_SettingChanged", 
 			{
 			terminate ZFM_ScriptHandle;
-			ZFM_ScriptHandle = [] execVM QPATHTOF(script_fps.sqf);
+			[] call FUNC(displayMonitor);
 			}
 		] call CBA_fnc_addEventHandler;
 	}
@@ -176,7 +176,7 @@
 		["CBA_SettingChanged", 
 			{
 			terminate ZFM_ScriptHandle;
-			ZFM_ScriptHandle = [] execVM QPATHTOF(script_fps.sqf);
+			[] call FUNC(displayMonitor);
 			}
 		] call CBA_fnc_addEventHandler;
 	}
@@ -191,7 +191,7 @@
 		["CBA_SettingChanged", 
 			{
 			terminate ZFM_ScriptHandle;
-			ZFM_ScriptHandle = [] execVM QPATHTOF(script_fps.sqf);
+			[] call FUNC(displayMonitor);
 			}
 		] call CBA_fnc_addEventHandler;
 	}
@@ -206,7 +206,7 @@
 		["CBA_SettingChanged", 
 			{
 			terminate ZFM_ScriptHandle;
-			ZFM_ScriptHandle = [] execVM QPATHTOF(script_fps.sqf);
+			[] call FUNC(displayMonitor);
 			}
 		] call CBA_fnc_addEventHandler;
 	}
@@ -221,7 +221,7 @@
 		["CBA_SettingChanged", 
 			{
 			terminate ZFM_ScriptHandle;
-			ZFM_ScriptHandle = [] execVM QPATHTOF(script_fps.sqf);
+			[] call FUNC(displayMonitor);
 			}
 		] call CBA_fnc_addEventHandler;
 	}
@@ -235,7 +235,7 @@
 		["CBA_SettingChanged", 
 			{
 			terminate ZFM_ScriptHandle;
-			ZFM_ScriptHandle = [] execVM QPATHTOF(script_fps.sqf);
+			[] call FUNC(displayMonitor);
 			}
 		] call CBA_fnc_addEventHandler;
 	}
@@ -249,7 +249,7 @@
 			["CBA_SettingChanged", 
 				{
 				terminate ZFM_ScriptHandle;
-				ZFM_ScriptHandle = [] execVM QPATHTOF(script_fps.sqf);
+				[] call FUNC(displayMonitor);
 				}
 			] call CBA_fnc_addEventHandler;
 		}

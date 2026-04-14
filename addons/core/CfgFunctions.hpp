@@ -10,8 +10,9 @@ class CfgFunctions
 			class handleDataServer {};
 			class registerZeus {};
 			class unregisterZeus {};
+			class startClientStatMonitor {};
+			class displayMonitor {};
 
-            class initFPS { postInit = 1; };
 			class postInit { postInit = 1; };
 
         };

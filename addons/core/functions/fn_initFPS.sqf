@@ -75,9 +75,9 @@ ZFM_ScriptHandle = [] execVM QPATHTOF(script_fps.sqf);
 					_playerData set [0, _fps];
 
 					if (isMultiplayer) then {
-						private _userInfo = getUserInfo (getPlayerID player);
-						_userInfo params ["_playerID", "_ownerId", "_playerUID", "_profileName", "_displayName", "_steamName", "_clientState", "_isHC", "_adminState", ["_networkInfo", [-1,-1,-1]], ["_unit", player]];
-						_networkInfo params [["_avgPing", -1], ["_avgBandwidth", -1], ["_desync", -1]];
+						// private _userInfo = getUserInfo (getPlayerID player);
+						// _userInfo params ["_playerID", "_ownerId", "_playerUID", "_profileName", "_displayName", "_steamName", "_clientState", "_isHC", "_adminState", ["_networkInfo", [-1,-1,-1]], ["_unit", player]];
+						// _networkInfo params [["_avgPing", -1], ["_avgBandwidth", -1], ["_desync", -1]];
 
 						// if (_avgPing != DNI_lastPing) then {
 						// 	DNI_lastPing = _avgPing;
@@ -91,8 +91,6 @@ ZFM_ScriptHandle = [] execVM QPATHTOF(script_fps.sqf);
 						// 	DNI_lastDesync = _desync;
 						// 	player setVariable ["DNI_desync", _desync, true];
 						// };
-						_playerData set [1, _avgPing];
-						_playerData set[2, _desync];
 					};
 					player setVariable [QGVAR(playerData), _playerData, 2];
 					diag_log format ["%1 data sent to server by %2 | %3", QFUNC(initFPS), getPlayerUID player, name player];

@@ -38,11 +38,14 @@ GVAR(PlayersDataMap) = createHashMap;
 	{
 		{
 			if (!isNull _x) then {
-				private _netWorkData = [-1, -1, -1];
+				private _netWorkData = [-1,-1,-1];
+				private _fps = _x getVariable [QGVAR(playerFPS), 0];
 				if (isMultiplayer) then {
 					_netWorkData = (getUserInfo (getPlayerID _x)) # 9;
+					systemChat str(_netWorkData);
 				};
-				GVAR(PlayersDataMap) set [getPlayerUID _x, _x getVariable [QGVAR(playerData), [-1, _netWorkData#0, _netWorkData#2]]];
+				GVAR(PlayersDataMap) set [getPlayerUID _x, [_fps, _networkData#0, _networkData#2]];
+				systemChat "data Sent";
 			};
 		} forEach allPlayers;
 

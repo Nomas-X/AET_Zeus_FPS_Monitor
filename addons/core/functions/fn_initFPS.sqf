@@ -64,15 +64,12 @@ ZFM_ScriptHandle = [] execVM QPATHTOF(script_fps.sqf);
 					// if (isNil "DNI_lastBW") then { DNI_lastBW = -1; };
 					// if (isNil "DNI_lastDesync") then { DNI_lastDesync = -1; };
 
-					private _playerData = [-1, -1 ,-1];
-
 					// --- FPS update
 					private _fps = floor diag_fps;
 					// if (_fps != DNI_lastFPS) then {
 					// 	DNI_lastFPS = _fps;
 					// 	player setVariable ["DNI_PlayerFPS", _fps, true];
 					// };
-					_playerData set [0, _fps];
 
 					if (isMultiplayer) then {
 						// private _userInfo = getUserInfo (getPlayerID player);
@@ -92,7 +89,7 @@ ZFM_ScriptHandle = [] execVM QPATHTOF(script_fps.sqf);
 						// 	player setVariable ["DNI_desync", _desync, true];
 						// };
 					};
-					player setVariable [QGVAR(playerData), _playerData, 2];
+					player setVariable [QGVAR(playerFPS), _fps, 2];
 					diag_log format ["%1 data sent to server by %2 | %3", QFUNC(initFPS), getPlayerUID player, name player];
 				};
 			}, 1, []] call CBA_fnc_addPerFrameHandler;

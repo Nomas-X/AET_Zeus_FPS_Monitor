@@ -45,12 +45,19 @@ addMissionEventHandler ["PlayerDisconnected", {
 
 GVAR(PlayersDataMap) = createHashMap;
 
-{
-	// Only remoteExec to players
-	if (!isNull _x) then {
-		[] remoteExec [QFUNC(startClientStatMonitor), _x, false];
-	};
-} forEach allPlayers;
+
+[
+	{GVAR(zeusList) isNotEqualTo []},
+	{
+		{
+			// Only remoteExec to players
+			if (!isNull _x) then {
+				_owner publicVariableClient QFUNC(startClientStatMonitor);
+				[] remoteExec [QFUNC(startClientStatMonitor), _x, false];
+			};
+		} forEach allPlayers;
+	}
+] call CBA_fnc_waitUntilAndExecute;
 
 if (isMultiplayer) then {
 	[

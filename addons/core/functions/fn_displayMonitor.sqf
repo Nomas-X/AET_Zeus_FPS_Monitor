@@ -21,7 +21,7 @@ Example:
 	[] call AET_ZFM_core_fnc_displayMonitor;
 */
 
-GVAR(ScriptHandle) = [] spawn {
+GVAR(scriptHandle) = [] spawn {
 	/*
 	This an edited version of DriftingNitro's Zeus Framerate Monitor. Full credit to the original Authors.
 	Hints, System Messages and obsolete Code have been removed.

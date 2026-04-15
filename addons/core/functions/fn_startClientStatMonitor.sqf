@@ -6,7 +6,7 @@ Authors:
 	Redwan S / Nomas
 
 Description:
-    This function is used to to display the FPS monitor icons / UI while in Zeus.
+    This function is used to send the user's FPS data to the server.
 
 Arguments:
 	N/A

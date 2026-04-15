@@ -22,7 +22,7 @@
 	{
 		["CBA_SettingChanged", 
 			{
-			terminate GVAR(ScriptHandle);
+			terminate GVAR(scriptHandle);
 			[] call FUNC(displayMonitor);
 			GVAR(showFrames) = false;
 			}
@@ -38,7 +38,7 @@
 	{
 		["CBA_SettingChanged", 
 			{
-			terminate GVAR(ScriptHandle);
+			terminate GVAR(scriptHandle);
 			[] call FUNC(displayMonitor);
 			}
 		] call CBA_fnc_addEventHandler;
@@ -54,7 +54,7 @@
 	{
 		["CBA_SettingChanged", 
 			{
-			terminate GVAR(ScriptHandle);
+			terminate GVAR(scriptHandle);
 			[] call FUNC(displayMonitor);
 			}
 		] call CBA_fnc_addEventHandler;
@@ -69,7 +69,7 @@
 	{
 		["CBA_SettingChanged", 
 			{
-			terminate GVAR(ScriptHandle);
+			terminate GVAR(scriptHandle);
 			[] call FUNC(displayMonitor);
 			}
 		] call CBA_fnc_addEventHandler;
@@ -84,7 +84,7 @@
 	{
 		["CBA_SettingChanged", 
 			{
-				terminate GVAR(ScriptHandle);
+				terminate GVAR(scriptHandle);
 				[] call FUNC(displayMonitor);
 			}
 		] call CBA_fnc_addEventHandler;
@@ -129,7 +129,7 @@
 	{
 		["CBA_SettingChanged", 
 			{
-			terminate GVAR(ScriptHandle);
+			terminate GVAR(scriptHandle);
 			[] call FUNC(displayMonitor);
 			}
 		] call CBA_fnc_addEventHandler;
@@ -144,7 +144,7 @@
 	{
 		["CBA_SettingChanged", 
 			{
-			terminate GVAR(ScriptHandle);
+			terminate GVAR(scriptHandle);
 			[] call FUNC(displayMonitor);
 			}
 		] call CBA_fnc_addEventHandler;
@@ -160,7 +160,7 @@
 	{
 		["CBA_SettingChanged", 
 			{
-			terminate GVAR(ScriptHandle);
+			terminate GVAR(scriptHandle);
 			[] call FUNC(displayMonitor);
 			}
 		] call CBA_fnc_addEventHandler;
@@ -175,7 +175,7 @@
 	{
 		["CBA_SettingChanged", 
 			{
-			terminate GVAR(ScriptHandle);
+			terminate GVAR(scriptHandle);
 			[] call FUNC(displayMonitor);
 			}
 		] call CBA_fnc_addEventHandler;
@@ -190,7 +190,7 @@
 	{
 		["CBA_SettingChanged", 
 			{
-			terminate GVAR(ScriptHandle);
+			terminate GVAR(scriptHandle);
 			[] call FUNC(displayMonitor);
 			}
 		] call CBA_fnc_addEventHandler;
@@ -205,7 +205,7 @@
 	{
 		["CBA_SettingChanged", 
 			{
-			terminate GVAR(ScriptHandle);
+			terminate GVAR(scriptHandle);
 			[] call FUNC(displayMonitor);
 			}
 		] call CBA_fnc_addEventHandler;
@@ -220,7 +220,7 @@
 	{
 		["CBA_SettingChanged", 
 			{
-			terminate GVAR(ScriptHandle);
+			terminate GVAR(scriptHandle);
 			[] call FUNC(displayMonitor);
 			}
 		] call CBA_fnc_addEventHandler;
@@ -234,7 +234,7 @@
 	{
 		["CBA_SettingChanged", 
 			{
-			terminate GVAR(ScriptHandle);
+			terminate GVAR(scriptHandle);
 			[] call FUNC(displayMonitor);
 			}
 		] call CBA_fnc_addEventHandler;

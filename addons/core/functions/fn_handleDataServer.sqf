@@ -80,8 +80,6 @@ if (isMultiplayer) then {
 
 			{
 				(owner _x) publicVariableClient QGVAR(PlayersDataMap);
-				diag_log format ["%1 data sent to %2 | %3", QFUNC(handleDataServer), getPlayerUID _x, name _x];
-
 			} forEach GVAR(zeusList);
 		},
 		1,

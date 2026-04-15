@@ -41,12 +41,10 @@ private _code = {
 			if (_inZeus) then {
 				// Zeus opened - add this client to the zeus list on the server
 				[player] remoteExec [QFUNC(registerZeus), 2, false];
-				diag_log format ["%1 Zeus interface opened by %2 | %3", QFUNC(postInit), getPlayerUID player, name player];
 
 			} else {
 				// Zeus closed - remove this client from the zeus list on the server
 				[player] remoteExec [QFUNC(unregisterZeus), 2, false];
-				diag_log format ["%1 Zeus interface closed by %2 | %3", QFUNC(postInit), getPlayerID player, name player];
 			};
 		}] call CBA_fnc_addPlayerEventHandler;
 

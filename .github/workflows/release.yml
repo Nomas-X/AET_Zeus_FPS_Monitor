@@ -49,7 +49,7 @@ jobs:
         - name: Update to Steam Workshop (stable)
           uses: arma-actions/workshop-upload@v1
           with:
-            itemId: '3706470196'
+            itemId: '3707546641'
             contentPath: './@AET_Zeus_FPS_Monitor-${{ env.VERSION }}'
             changelog: |
               https://github.com/Nomas-X/AET_Zeus_FPS_Monitor/releases/tag/${{ env.VERSION }}

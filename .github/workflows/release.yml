@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   release-addon:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
         - name: Set VERSION env
           run: echo VERSION=${GITHUB_REF#refs/tags/${{ env.VERSION }}} >> $GITHUB_ENV

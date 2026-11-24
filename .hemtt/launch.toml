@@ -2,7 +2,6 @@
 [default]
 workshop = [
     "450814997",  # CBA_A3's Workshop ID
-    "463939057",  # ACE3
 	"1508091616", # Metis Marker
 	"894678801",  # TFAR BETA
 	"1673595418", # User Input Menus
